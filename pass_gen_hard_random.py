@@ -28,10 +28,9 @@ for number in range(0,nr_numbers):
   random_number = random.choice(numbers)
   password.append(random_number)
 #print(total_num)
-
+print(password)
 
 random.shuffle(password)
-print(password)
 
 str =""
 for item in password:
