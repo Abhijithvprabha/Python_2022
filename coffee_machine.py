@@ -93,5 +93,5 @@ while machine_status == True:
         drink = MENU[choice]
         if is_resource_enough(drink["ingredients"]) == True:
             payment = process_coins()
-            is_transaction_success(payment, drink["cost"])
-            make_coffee(choice, drink["ingredients"])
+            if is_transaction_success(payment, drink["cost"])
+                make_coffee(choice, drink["ingredients"])
