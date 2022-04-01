@@ -1,22 +1,16 @@
-from menu import Menu, MenuItem
-from coffee_maker import CoffeeMaker
-from money_machine import MoneyMachine
+# TODO: Create a letter using starting_letter.txt
+PLACEHOLDER = '[name]'
 
-# print report
-my_money_machine = MoneyMachine()
-my_coffeemaker = CoffeeMaker()
-my_menu = Menu()
-machine_status = True
-while machine_status:
-    options = my_menu.get_items()
-    choice = input(f"What would you like? {options}: ”")
-    if choice == "off":
-        machine_status = False
-    elif choice == "report":
-        my_money_machine.report()
-        my_coffeemaker.report()
+with open("./Input/Names/invited_names.txt", mode='r') as name_file:
+    names = name_file.readlines()
+    # print(names)
 
-    else:
-        drink = my_menu.find_drink(choice)
-        if my_coffeemaker.is_resource_sufficient(drink) and my_money_machine.make_payment(drink.cost):
-            my_coffeemaker.make_coffee(drink)
+with open("./Input/Letters/starting_letter.txt") as letter_file:
+    contents = letter_file.read()
+
+for name in names:
+    striped_name = name.strip()
+    new_letter = contents.replace(PLACEHOLDER, striped_name)
+    # print(new_letter)
+    with open(f"./Output/ReadyToSend/letter_for_{striped_name}.txt", mode='w') as completed_letter:
+        completed_letter.write(new_letter)
